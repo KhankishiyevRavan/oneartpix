@@ -15,9 +15,6 @@ interface ProductsProps {
 
 export default function Products({
   products,
-  total,
-  showingFrom,
-  showingTo,
 }: ProductsProps) {
   return (
     <section id="products" className="max-w-[1268px] mx-auto  py-10">
