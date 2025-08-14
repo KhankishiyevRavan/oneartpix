@@ -146,7 +146,7 @@ export default function Gallery() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0d1117] text-white">
+    <main className="min-h-screen text-white">
       <GalleryFilters
         // İstəsən categories prop verə bilərsən ki, düymələr siyahısı buradan gəlsin
         onSearchChange={handleSearchChange}
