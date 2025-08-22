@@ -51,6 +51,8 @@ function Gallery() {
             // category göndərmirik — hamısını yığırıq
             // sort göndərmirik — hamısı frontda
           });
+          console.log(resp);
+
           acc.push(...(resp.items ?? []));
           total = resp.total ?? acc.length;
           currentPage += 1;
