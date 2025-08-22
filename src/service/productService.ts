@@ -50,9 +50,6 @@ export function parseSort(s: string): SortKey {
 }
 
 // ---- ENV & fetch helper
-const RAW_BASE = import.meta.env?.VITE_API_URL ?? "";
-const BASE_URL = String(RAW_BASE).replace(/\/+$/, "");
-const makeUrl = (p: string) => `${BASE_URL}${p.startsWith("/") ? p : `/${p}`}`;
 
 export class ApiError extends Error {
   status?: number;
