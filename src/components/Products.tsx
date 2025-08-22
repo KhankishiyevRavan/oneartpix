@@ -20,7 +20,6 @@ interface ProductsProps {
 
 export default function Products({
   products,
-  total = 0,
   showingFrom = 0,
   showingTo = 0,
   loading = false,
