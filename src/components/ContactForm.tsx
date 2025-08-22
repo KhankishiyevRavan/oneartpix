@@ -34,7 +34,7 @@ export default function ContactSection() {
 
     try {
       setState("loading");
-      const res = await fetch("http://localhost:5002/api/contact", {
+      const res = await fetch("https://oneartpix.khankishiyevravan.info/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
