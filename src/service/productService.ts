@@ -63,20 +63,43 @@ export class ApiError extends Error {
   }
 }
 
-async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(makeUrl(path), { credentials: "include", ...init });
-  const ct = res.headers.get("content-type") || "";
-  const data = ct.includes("application/json")
-    ? await res.json()
-    : await res.text();
-  if (!res.ok) {
-    const msg =
-      (typeof data === "object" && (data?.message || data?.error)) ||
-      `HTTP ${res.status}`;
-    throw new ApiError(msg, res.status);
+// src/service/productService.ts
+
+const API_BASE = import.meta.env.VITE_API_BASE || ""; // məsələn: http://localhost:5002
+
+async function apiFetch<T>(url: string, init?: RequestInit): Promise<T> {
+  // url həmişə / ilə başlayır: "/api/products"
+  const full = `${API_BASE}${url}`;
+  const r = await fetch(full, init);
+
+  const ctype = r.headers.get("content-type") || "";
+  const isJson = ctype.includes("application/json");
+
+  if (!r.ok) {
+    const body = await (isJson
+      ? r.json().catch(() => ({}))
+      : r.text().catch(() => ""));
+    const preview =
+      typeof body === "string"
+        ? body.slice(0, 300)
+        : JSON.stringify(body).slice(0, 300);
+    throw new Error(`HTTP ${r.status} ${r.statusText} @ ${full}\n${preview}`);
   }
-  return data as T;
+
+  if (!isJson) {
+    const text = await r.text().catch(() => "");
+    throw new Error(
+      `Non-JSON response @ ${full}\nContent-Type: ${ctype}\nPreview:\n${text.slice(
+        0,
+        300
+      )}`
+    );
+  }
+
+  return r.json() as Promise<T>;
 }
+
+// Qalan kodun (list, tipler və s.) eyni qalsın
 
 function mapToUI(p: APIProduct): UIProduct {
   return {
@@ -134,7 +157,6 @@ export async function listUI(params: ListParams = {}) {
     pageSize: resp.pageSize ?? params.pageSize ?? 12,
   };
 }
-
 
 export async function getDetail(id: string): Promise<APIProduct> {
   return apiFetch<APIProduct>(`/api/products/${id}`);
