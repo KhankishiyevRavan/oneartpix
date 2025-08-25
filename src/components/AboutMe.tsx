@@ -2,7 +2,7 @@ export default function AboutMe() {
   return (
     <section
       id="section-about-me"
-      className="bg-cover bg-center bg-no-repeat px-5 pt-20 pl-0 pr-20 overflow-hidden flex justify-center items-center z-[-20] mt-20 max-h-[800px] max-w-[1268px] m-auto"
+      className="bg-cover bg-center bg-no-repeat px-5 pt-20 pl-0 pr-20 overflow-hidden flex justify-center items-center z-[-20] mt-20 xl:max-h-[800px] max-w-[1268px] m-auto"
       style={{
         backgroundImage:
           "url('/images/bf.png')",
@@ -15,9 +15,9 @@ export default function AboutMe() {
           alt="A photographer standing on a rock with a camera rig."
           className="max-w-full h-auto object-contain absolute bottom-[0px] max-[1200px]:bottom-0 max-[768px]:absolute max-[768px]:bottom-0 max-[768px]:left-[-30%] max-[768px]:max-h-[auto] max-[768px]:w-200% z-[0]  max-[768px]:max-w-[200%] "
         />
-        <div className="relative basis-1/2 max-[1200px]:w-[50%] max-[1200px]:max-w-[600px] max-[1200px]:mb-[200px] max-[768px]:mb-0 max-[768px]:h-[400px] flex flex-col items-center h-[100dvh] max-[768px]:max-w-[50%] max-[768px]:w-[100%] max-h-[800px]">
+        <div className="relative basis-1/2 max-[1200px]:w-[50%] max-[1200px]:max-w-[600px] max-[1200px]:mb-[200px] max-[768px]:mb-0 max-[768px]:h-[400px] flex flex-col items-start h-[100dvh] max-[768px]:max-w-[50%] max-[768px]:w-[100%] xl:max-h-[800px]">
           {/* Benefit Tags */}
-          <div className="absolute top-[178px] left-[26px] bg-[rgba(48,48,48,0.4)] rounded-xl py-[14px] px-5 flex items-center gap-3 font-nunito font-bold text-[15px] text-[#ffe30d] max-[1200px]:top-0 max-[1200px]:left-0 max-[768px]:static max-[768px]:m-2 max-[768px]:w-fit max-[768px]:max-w-[100%] ">
+          <div className="absolute top-[178px] left-[26px] bg-[rgba(48,48,48,0.4)] rounded-xl py-[14px] px-5 flex items-center gap-3 font-nunito font-bold text-[15px] text-[#ffe30d] max-[1200px]:top-0 max-[1200px]:left-0 max-[768px]:static max-[768px]:m-2  max-[768px]:w-[180px] max-[768px]:h-[50px]">
             <svg
               width="213"
               height="28"
@@ -56,7 +56,7 @@ export default function AboutMe() {
             {/* <span>Expert Composition</span> */}
           </div>
 
-          <div className="absolute top-[76px] left-[244px] bg-[rgba(48,48,48,0.4)] rounded-xl py-[14px] px-5 flex items-center gap-3 font-nunito font-bold text-[15px] text-[rgba(255,205,136,0.83)] max-[1200px]:top-[70px] max-[1200px]:left-0 max-[768px]:static max-[768px]:order-first max-[768px]:m-2 max-[768px]:w-fit max-[768px]:max-w-[100%]">
+          <div className="absolute top-[76px] left-[244px] bg-[rgba(48,48,48,0.4)] rounded-xl py-[14px] px-5 flex items-center gap-3 font-nunito font-bold text-[15px] text-[rgba(255,205,136,0.83)] max-[1200px]:top-[70px] max-[1200px]:left-0 max-[768px]:static max-[768px]:order-first max-[768px]:m-2 max-[768px]:w-[180px] max-[768px]:h-[50px]">
             <svg
               width="213"
               height="28"
@@ -84,7 +84,7 @@ export default function AboutMe() {
             {/* <span>Unique Perspective</span> */}
           </div>
 
-          <div className="absolute top-[178px] left-[410px] bg-[rgba(48,48,48,0.4)] rounded-xl py-[14px] px-5 flex items-center gap-3 font-nunito font-bold text-[15px] text-[#a67840] max-[1200px]:top-[140px] max-[1200px]:left-0 max-[768px]:static max-[768px]:m-2 max-[768px]:w-fit max-[768px]:max-w-[100%]">
+          <div className="absolute top-[178px] left-[410px] bg-[rgba(48,48,48,0.4)] rounded-xl py-[14px] px-5 flex items-center gap-3 font-nunito font-bold text-[15px] text-[#a67840] max-[1200px]:top-[140px] max-[1200px]:left-0 max-[768px]:static max-[768px]:m-2 max-[768px]:w-[180px] max-[768px]:h-[50px]">
             <svg
               width="213"
               height="28"
@@ -131,21 +131,21 @@ export default function AboutMe() {
           </h2>
 
           <div className="flex flex-col gap-[17px]">
-            <p className="font-lato text-[16.5px] leading-[1.9] text-white text-justify max-[1200px]:text-left">
+            <p className="font-lato text-[16.5px] leading-[1.9] text-white text-justify max-[1200px]:text-left max-[800px]:text-[11px]">
               I invite you to embark on a journey to the edges of the visible
               and the invisible. Through my photographs, I have sought to
               capture not only images but also fragments of emotions,
               encounters, and adventures that mark my path as a globetrotting
               photographer.
             </p>
-            <p className="font-lato text-[16.5px] leading-[1.9] text-white text-justify max-[1200px]:text-left">
+            <p className="font-lato text-[16.5px] leading-[1.9] text-white text-justify max-[1200px]:text-left max-[800px]:text-[11px]">
               My photographic development art reflects this vision: I have
               chosen to move away from colorimetric overexuberance, which, to
               me, distorts reality and dulls the imagination. I prefer
               black-and-white or matte tones—choices that enhance deep contrasts
               and open a broader space for interpretation.
             </p>
-            <p className="font-lato text-[16.5px] leading-[1.9] text-white text-justify max-[1200px]:text-left">
+            <p className="font-lato text-[16.5px] leading-[1.9] text-white text-justify max-[1200px]:text-left max-[800px]:text-[11px]">
               I firmly believe that aesthetics resides in subtlety, and the
               mystery that emerges from it leaves each person the chance to
               compose their own story, their own journey.
@@ -155,26 +155,26 @@ export default function AboutMe() {
           {/* Stats */}
           <div className=" p-[30px_20px] flex justify-around items-center mt-5 max-[768px]:flex-col max-[768px]:gap-[30px] max-[768px]:border-0 max-[768px]:p-5">
             <div className="text-center">
-              <span className="font-bebas text-[55px] font-normal leading-[1.1] text-[rgba(255,216,162,0.9)] [text-stroke:1.1px_#ffe30d] block max-[768px]:text-[45px]">
+              <span className="font-bebas text-[55px] font-normal leading-[1.1] text-[rgba(255,216,162,0.9)] [text-stroke:1.1px_#ffe30d] block max-[768px]:text-[35px]">
                 1,302+
               </span>
-              <span className="font-inter text-[16px] text-white mt-2 block">
+              <span className="font-inter text-[11px] text-white mt-2 block">
                 Expeditions
               </span>
             </div>
             <div className="text-center">
-              <span className="font-bebas text-[55px] font-normal leading-[1.1] text-[rgba(255,216,162,0.9)] [text-stroke:1.1px_#ffe30d] block max-[768px]:text-[45px]">
+              <span className="font-bebas text-[55px] font-normal leading-[1.1] text-[rgba(255,216,162,0.9)] [text-stroke:1.1px_#ffe30d] block max-[768px]:text-[35px]">
                 500+
               </span>
-              <span className="font-inter text-[16px] text-white mt-2 block">
+              <span className="font-inter text-[11px] text-white mt-2 block">
                 Photos
               </span>
             </div>
             <div className="text-center">
-              <span className="font-bebas text-[55px] font-normal leading-[1.1] text-[rgba(255,216,162,0.83)] [text-stroke:1.1px_#ffe30d] block max-[768px]:text-[45px]">
+              <span className="font-bebas text-[55px] font-normal leading-[1.1] text-[rgba(255,216,162,0.83)] [text-stroke:1.1px_#ffe30d] block max-[768px]:text-[35px]">
                 98%
               </span>
-              <span className="font-inter text-[16px] text-white mt-2 block">
+              <span className="font-inter text-[11px] text-white mt-2 block">
                 Satisfied Clients
               </span>
             </div>
