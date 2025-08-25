@@ -3,6 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import AboutMe from "../components/AboutMe";
 import ContactSection from "../components/ContactForm";
 import GallerySection from "../components/GallerySection";
+import { Link } from "react-router-dom";
 
 type Slide = {
   id: string;
@@ -144,12 +145,14 @@ export default function HeroCarousel() {
                           </span>
                         </p>
                       </div>
-                      <a
-                        href="#"
+
+                      <Link
+                        to={`/photo/${s.id}`}
+                        state={{ slide: s }} // preloaded data
                         className="rounded-full border border-gray-600 px-5 py-2 text-sm hover:border-[#D9B36C] hover:text-[#D9B36C] transition"
                       >
                         See more
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>
