@@ -161,7 +161,6 @@ export default function GalleryLightbox({
 
   const lastTap = useRef<number>(0);
   const onDoubleTap = (e: React.PointerEvent) => {
-    console.log(e);
 
     const now = Date.now();
     if (now - lastTap.current < 300) {
@@ -232,8 +231,8 @@ export default function GalleryLightbox({
                     d="M21.25 25.167L12.9038 16.8208L21.25 8.47461"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -255,8 +254,8 @@ export default function GalleryLightbox({
                     d="M13.21 25.167L21.5562 16.8208L13.21 8.47461"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -312,29 +311,29 @@ export default function GalleryLightbox({
                     d="M13.6725 22.1531C18.7941 22.1531 22.9461 18.0012 22.9461 12.8795C22.9461 7.75787 18.7941 3.60596 13.6725 3.60596C8.55084 3.60596 4.39893 7.75787 4.39893 12.8795C4.39893 18.0012 8.55084 22.1531 13.6725 22.1531Z"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M25.2642 24.4715L20.2217 19.429"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M13.6719 9.40186V16.357"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M10.1943 12.8796H17.1495"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -355,22 +354,22 @@ export default function GalleryLightbox({
                     d="M13.4669 22.1531C18.5886 22.1531 22.7405 18.0012 22.7405 12.8795C22.7405 7.75787 18.5886 3.60596 13.4669 3.60596C8.34528 3.60596 4.19336 7.75787 4.19336 12.8795C4.19336 18.0012 8.34528 22.1531 13.4669 22.1531Z"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M25.0586 24.4715L20.0161 19.429"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M9.98877 12.8796H16.9439"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -391,29 +390,29 @@ export default function GalleryLightbox({
                     d="M9.40047 3.60596V7.08355C9.40047 7.69842 9.15621 8.28811 8.72143 8.7229C8.28665 9.15768 7.69696 9.40194 7.08208 9.40194H3.60449"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M24.4703 9.40194H20.9927C20.3778 9.40194 19.7881 9.15768 19.3534 8.7229C18.9186 8.28811 18.6743 7.69842 18.6743 7.08355V3.60596"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M3.60449 18.6753H7.08208C7.69696 18.6753 8.28665 18.9196 8.72143 19.3543C9.15621 19.7891 9.40047 20.3788 9.40047 20.9937V24.4713"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M18.6743 24.4713V20.9937C18.6743 20.3788 18.9186 19.7891 19.3534 19.3543C19.7881 18.9196 20.3778 18.6753 20.9927 18.6753H24.4703"
                     stroke="white"
                     stroke-width="2.78207"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>

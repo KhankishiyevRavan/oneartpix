@@ -8,7 +8,7 @@ import productsClient, { type UIProduct } from "../service/productService";
 type ImageItem = { src: string; alt: string };
 
 // Fallback şəkillər (ID/şəkil verilməsə boş qalmasın)
-const BASE_IMAGES: ImageItem[] = [{ src: "", alt: "Thumbnail 1" }];
+const BASE_IMAGES: ImageItem[] = [{ src: "/", alt: "Thumbnail 1" }];
 
 const MAIN_IMAGE_FALLBACK = "";
 

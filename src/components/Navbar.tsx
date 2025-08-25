@@ -1,21 +1,70 @@
-import { useState } from "react";
+// src/components/Navbar.tsx
+import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-
-type MenuItem = { label: string; href: string };
-
-const MENU: MenuItem[] = [
-  { label: "COLLECTIONS & THEMES", href: "/gallery" },
-  { label: "NEWS", href: "/news" },
-  { label: "CONTACT ME", href: "/contact" },
-  { label: "MUST HAVE", href: "/must-have" },
-  { label: "DIGITAL & WEB SERVICES", href: "/services" },
-];
+import { useSearchIndex } from "../hooks/useSearchIndex"; // pages (MENU) + gallery (API) üçün
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const { totalItems } = useCart(); // hook
+  const [open, setOpen] = useState(false); // mobil menyu
+  const [searchOpen, setSearchOpen] = useState(false); // axtarış paneli
+  const [q, setQ] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const { totalItems } = useCart();
   const navigate = useNavigate();
+
+  // Pages + Gallery dataları (MENU statik + məhsullar backend-dən)
+  const { pages, gallery, loading } = useSearchIndex();
+
+  // "/" açır, "Esc" bağlayır (inputda deyilsə)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
+      const inField =
+        tag === "input" ||
+        tag === "textarea" ||
+        (e.target as HTMLElement)?.isContentEditable;
+
+      if (!inField && e.key === "/") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Panel açılınca inputa fokus ver
+  useEffect(() => {
+    if (searchOpen) setTimeout(() => inputRef.current?.focus(), 0);
+    else setQ("");
+  }, [searchOpen]);
+
+  const submitSearch = () => {
+    const query = q.trim();
+    setSearchOpen(false);
+    if (query) navigate(`/search?q=${encodeURIComponent(query)}`);
+  };
+
+  // Filter məntiqi
+  const norm = (s: string) => s.toLowerCase().trim();
+  const qq = norm(q);
+
+  const filteredPages = qq
+    ? pages.filter(
+        (m) => norm(m.label).includes(qq) || norm(m.href).includes(qq)
+      )
+    : pages;
+
+  const filteredGallery = qq
+    ? gallery.filter((g) => {
+        const inTitle = norm(g.title).includes(qq);
+        const inTags = (g.tags || []).some((t) => norm(t).includes(qq));
+        return inTitle || inTags;
+      })
+    : gallery.slice(0, 6); // boş axtarışda son işlərdən bir neçəsini göstər
+
   return (
     <header className="sticky top-0 z-50 bg-[#111922] text-[#e9c78a] border-b border-[#d9b8801a] h-[72px] md:h-[89px]">
       <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-4 md:px-6">
@@ -28,11 +77,11 @@ export default function Navbar() {
           />
         </a>
 
-        {/* SAĞ QRUP: (Menyu + İkonlar) */}
+        {/* SAĞ QRUP */}
         <div className="flex items-center gap-4 md:gap-8">
           {/* Menyu (yalnız md və yuxarı) */}
           <nav className="hidden md:flex items-center gap-8">
-            {MENU.map((item) => (
+            {pages.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -50,6 +99,7 @@ export default function Navbar() {
               aria-label="Search"
               className="p-1 hover:opacity-90"
               title="Search"
+              onClick={() => setSearchOpen((s) => !s)}
             >
               <svg
                 width="23"
@@ -88,7 +138,6 @@ export default function Navbar() {
                 />
               </svg>
 
-              {/* 🔔 Badge */}
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-[#FFD8A2] text-[#121b25] text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {totalItems}
@@ -132,7 +181,7 @@ export default function Navbar() {
         }`}
       >
         <nav className="flex flex-col gap-3 px-4 py-4">
-          {MENU.map((item) => (
+          {pages.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -144,6 +193,149 @@ export default function Navbar() {
           ))}
         </nav>
       </div>
+
+      {/* AXTARIŞ OVERLAY */}
+      {searchOpen && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-[1px]"
+          onClick={() => setSearchOpen(false)}
+          aria-hidden
+        >
+          <div
+            className="mx-auto mt-24 w-[92%] max-w-2xl rounded-2xl border border-[#d9b8801a] bg-[#0e151d] p-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search"
+          >
+            {/* Input */}
+            <div className="flex items-center gap-3">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                className="shrink-0"
+              >
+                <path
+                  d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15a7.5 7.5 0 0 1 0 15Z"
+                  stroke="#FFD8A2"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <input
+                ref={inputRef}
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && submitSearch()}
+                placeholder="Search pages & gallery… (Esc to close)"
+                className="w-full bg-transparent outline-none text-[#FFD8A2] placeholder:text-[#FFD8A299]"
+              />
+              <button
+                className="text-[#FFD8A2] hover:opacity-90 text-sm px-2 py-1 rounded-md border border-[#d9b8801a]"
+                onClick={submitSearch}
+              >
+                Search
+              </button>
+            </div>
+
+            {/* Nəticələr */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 max-h-80 overflow-auto">
+              {/* Pages */}
+              <div>
+                <div className="text-[11px] uppercase tracking-wider text-[#FFD8A280] mb-1">
+                  Pages
+                </div>
+                {filteredPages.length === 0 ? (
+                  <div className="text-sm text-[#FFD8A299] px-1 py-2">
+                    No page match.
+                  </div>
+                ) : (
+                  <ul className="divide-y divide-[#d9b8801a]">
+                    {filteredPages.map((m) => (
+                      <li key={m.href}>
+                        <a
+                          href={m.href}
+                          className="flex items-center justify-between px-2 py-2 hover:bg-[#121b25] rounded-md"
+                          onClick={() => setSearchOpen(false)}
+                        >
+                          <span className="text-[#FFD8A2] text-sm">
+                            {m.label}
+                          </span>
+                          <span className="text-[11px] text-[#FFD8A280]">
+                            {m.href}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {/* Gallery */}
+              <div>
+                <div className="text-[11px] uppercase tracking-wider text-[#FFD8A280] mb-1">
+                  Gallery {loading ? "(loading…)" : ""}
+                </div>
+                {filteredGallery.length === 0 ? (
+                  <div className="text-sm text-[#FFD8A299] px-1 py-2">
+                    No gallery match.
+                  </div>
+                ) : (
+                  <ul className="space-y-1">
+                    {filteredGallery.map((g) => (
+                      <li key={g.id}>
+                        <button
+                          onClick={() => {
+                            setSearchOpen(false);
+                            // səndə route fərqli ola bilər: /gallery/:id və ya :slug
+                            navigate(`/products/${g.id}`);
+                          }}
+                          className="w-full text-left px-2 py-2 hover:bg-[#121b25] rounded-md flex items-center gap-3"
+                        >
+                          {g.thumb && (
+                            <img
+                              src={g.thumb}
+                              alt={g.title}
+                              className="h-8 w-8 object-cover rounded-md border border-[#d9b8801a]"
+                              loading="lazy"
+                            />
+                          )}
+                          <div className="min-w-0">
+                            <div className="text-[#FFD8A2] text-sm truncate">
+                              {g.title}
+                            </div>
+                            {g.tags?.length ? (
+                              <div className="text-[11px] text-[#FFD8A280] truncate">
+                                {g.tags.slice(0, 4).join(" · ")}
+                                {g.tags.length > 4 ? "…" : ""}
+                              </div>
+                            ) : null}
+                          </div>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            {/* Tips */}
+            <div className="mt-3 flex items-center justify-between text-[11px] text-[#FFD8A280]">
+              <span>Tip: “/” opens, “Esc” closes</span>
+              <button
+                className="underline hover:opacity-90"
+                onClick={() => {
+                  setQ("");
+                  inputRef.current?.focus();
+                }}
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

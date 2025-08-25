@@ -13,7 +13,6 @@ export type Product = {
 };
 
 export default function ProductCard({ product }: { product: Product }) {
-  console.log(product);
   
   const navigate = useNavigate();
   const { addToCart } = useCart();

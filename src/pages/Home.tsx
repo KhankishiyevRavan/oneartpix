@@ -86,7 +86,8 @@ export default function HeroCarousel() {
               return (
                 <div
                   key={s.id}
-                  className={`mt-3 relative shrink-0 basis-[90%] md:basis-[70%] lg:basis-[60%] transition-all duration-900 ${zClass} ${sizeOpacity} ${nudge}`}
+                  className={`mt-3 relative shrink-0 basis-[90%] md:basis-[70%] lg:basis-[60%] transition-all duration-900 cursor-pointer ${zClass} ${sizeOpacity} ${nudge}`}
+                  onClick={() => emblaApi?.scrollTo(idx)} // ⭐️ kliklə aktivləşdirmək
                 >
                   {/* OUTER: overflow yoxdur → overlay kəsilmir */}
                   <div className="relative">
@@ -103,7 +104,7 @@ export default function HeroCarousel() {
                       />
                     </div>
 
-                    {/* BORDER ANİMASİYASI — sol-yuxarı L-dən başlayır */}
+                    {/* BORDER ANİMASİYASI */}
                     {isActive && (
                       <div
                         className="pointer-events-none absolute z-40 corner-frame"
