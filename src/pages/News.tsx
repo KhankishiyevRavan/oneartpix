@@ -12,7 +12,7 @@ type NewsItem = {
   tags?: string[];
 };
 
-type FetchState = "idle" | "loading" | "success" | "error";
+// type FetchState = "idle" | "loading" | "success" | "error";
 
 // ---- Mock data (remove if you fetch from API) ----
 const MOCK_NEWS: NewsItem[] = [
@@ -51,9 +51,9 @@ const MOCK_NEWS: NewsItem[] = [
 // ---- Page ----
 export default function NewsPage() {
   const navigate = useNavigate();
-  const [state, setState] = useState<FetchState>("idle");
-  const [items, setItems] = useState<NewsItem[]>(MOCK_NEWS); // replace with [] if fetching
-  const [selected, setSelected] = useState<NewsItem | null>(null);
+  // const [state, setState] = useState<FetchState>("idle");
+  const [items] = useState<NewsItem[]>(MOCK_NEWS); // replace with [] if fetching
+  // const [selected, setSelected] = useState<NewsItem | null>(null);
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState<string>("All");
 
@@ -124,11 +124,11 @@ export default function NewsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Main list */}
           <div className="lg:col-span-2 flex flex-col gap-8">
-            {state === "error" && (
+            {/* {state === "error" && (
               <div className="bg-[#1a2432] rounded-2xl p-6">
                 Failed to load news. Please try again.
               </div>
-            )}
+            )} */}
             {filtered.map((news) => (
               <article
                 key={news.id}
@@ -136,7 +136,7 @@ export default function NewsPage() {
                 onClick={() => navigate(`/news/${news.slug || news.id}`)}
               >
                 <button
-                  onClick={() => setSelected(news)}
+                  // onClick={() => setSelected(news)}
                   className="text-left w-full"
                 >
                   <img

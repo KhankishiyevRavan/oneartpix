@@ -1,5 +1,4 @@
 import { useMemo, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
 
 /**
  * DIGITAL & WEB SERVICES — Onepixart-style page

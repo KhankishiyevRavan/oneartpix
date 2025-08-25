@@ -160,7 +160,7 @@ export default function GalleryLightbox({
   };
 
   const lastTap = useRef<number>(0);
-  const onDoubleTap = (e: React.PointerEvent) => {
+  const onDoubleTap = (_e: React.PointerEvent) => {
 
     const now = Date.now();
     if (now - lastTap.current < 300) {
